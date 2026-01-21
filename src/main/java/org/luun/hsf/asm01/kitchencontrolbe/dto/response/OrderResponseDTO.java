@@ -16,6 +16,8 @@ import java.util.List;
 public class OrderResponseDTO {
     private int orderId;
     private int storeId;
+    private String storeName; // Added for better client display
+    private Long planId;      // Added to fix the build error
     private LocalDateTime orderDate;
     private OrderStatus status;
     private List<OrderDetailResponse> orderDetails;
@@ -26,6 +28,7 @@ public class OrderResponseDTO {
     @AllArgsConstructor
     public static class OrderDetailResponse {
         private int productId;
+        private String productName; // Added for better client display
         private float quantity;
     }
 }

@@ -11,8 +11,8 @@ import org.mapstruct.Mapping;
 public interface OrderMapper {
 
     @Mapping(target = "orderId", ignore = true)
-    @Mapping(target = "deliveryId", ignore = true)
-    @Mapping(target = "planId", ignore = true)
+    @Mapping(target = "delivery", ignore = true)
+    @Mapping(target = "plan", ignore = true)
     @Mapping(target = "orderDate", ignore = true)
     @Mapping(target = "status", ignore = true)
     @Mapping(target = "orderDetails", source = "orderDetails")
@@ -22,6 +22,7 @@ public interface OrderMapper {
     @Mapping(target = "orderDetailId", ignore = true)
     OrderDetail toOrderDetailEntity(OrderRequestDTO.OrderDetailRequest request);
 
+    @Mapping(target = "planId", source = "plan.planId")
     OrderResponseDTO toResponseDTO(Order order);
 
     OrderResponseDTO.OrderDetailResponse toOrderDetailResponse(OrderDetail orderDetail);

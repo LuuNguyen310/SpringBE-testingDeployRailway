@@ -17,15 +17,16 @@ public class Order {
     @Column(name = "order_id")
     private int orderId;
 
-    // We will map relationships later for simplicity. For now, we use simple IDs.
-    @Column(name = "delivery_id")
-    private Integer deliveryId;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "delivery_id")
+    private Delivery delivery;
 
     @Column(name = "store_id", nullable = false)
     private int storeId;
 
-    @Column(name = "plan_id")
-    private Integer planId;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "plan_id")
+    private ProductionPlan plan;
 
     @Column(name = "order_date", nullable = false)
     private LocalDateTime orderDate;

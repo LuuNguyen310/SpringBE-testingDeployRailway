@@ -1,5 +1,9 @@
 package org.luun.hsf.asm01.kitchencontrolbe.controller;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.luun.hsf.asm01.kitchencontrolbe.dto.request.OrderRequestDTO;
 import org.luun.hsf.asm01.kitchencontrolbe.dto.response.OrderResponseDTO;
@@ -13,10 +17,17 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/orders")
 @RequiredArgsConstructor
+@Tag(name = "Orders API", description = "API for managing orders from stores")
 public class OrderController {
 
     private final IOrderService orderService;
 
+    @Operation(summary = "Create a new order", description = "Create a new order from stores, including order details")
+    @ApiResponses( value = {
+            @ApiResponse(responseCode = "201", description = "Order created successfully"),
+            @ApiResponse(responseCode = "400", description = "Bad request")
+        }
+    )
     @PostMapping
     public ResponseEntity<OrderResponseDTO> createOrder(@RequestBody OrderRequestDTO request) {
         OrderResponseDTO newOrder = orderService.createOrder(request);
